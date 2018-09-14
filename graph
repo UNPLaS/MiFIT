@@ -1,0 +1,23 @@
+set terminal postscript eps enhanced color font "Helvetica,17"
+set auto x
+set output 'output.eps'
+
+red = "#FF0000"; green = "#00FF00"; blue = "#0000FF"; skyblue = "#87CEEB"; black ="#000000"; darkslategray = "#2F4F4F"; lightgrey="#D3D3D3"; gray="#7F7F7F"
+set yrange [0:100]
+set style data histogram
+set style histogram rowstacked
+set style fill solid
+set boxwidth 0.35 relative
+set xtics format ""
+set grid ytics
+
+
+
+set ylabel "Percentage of fault classification"
+set size 1, 0.7
+set key font "Helvetica,8"
+set key at 0.95,95
+plot "Result.dat" using ($2*100/$5):xtic(1) title "unACE" linecolor rgb lightgrey, \
+            '' using ($3*100/$5) title "SDC" linecolor rgb gray, \
+            '' using ($4*100/$5) title "Hang" linecolor black 
+           # '' using 5 title "Tot" linecolor rgb skyblue
